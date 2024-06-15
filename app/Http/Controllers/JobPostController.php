@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobPost;
 use Illuminate\Http\Request;
 
 class JobPostController extends Controller
@@ -11,7 +12,7 @@ class JobPostController extends Controller
      */
     public function index()
     {
-        //
+        return view('job.index', ['jobs' => JobPost::all()]);
     }
 
     /**
