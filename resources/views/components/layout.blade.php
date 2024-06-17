@@ -8,9 +8,8 @@
 
         @vite('resources/css/app.css')
     </head>
-    <body >
-        {{-- slots is adding the output of a slot special variable inside your component and it works for all blade components and what this slot variable does is that in your other normal blade files for every individual route you can use the layout component like that by adding x layout and then all the content that you pass in between the component tags will basically fill this slot variable--}}
-
-        {{$slot}} {{-- outputs the content of a slot --}}
+    <body class="mx-auto mt-10 max-w-2xl bg-slate-200 text-slate-700">
+    
+        {{$slot}} 
     </body>
 </html>
