@@ -11,7 +11,7 @@
             <li>
                 <a href="{{$link}}">{{$label}}</a>
             </li>
-            <li>
+        
         @endforeach
        
     </ul>

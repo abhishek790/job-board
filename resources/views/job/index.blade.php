@@ -1,6 +1,5 @@
 <x-layout>
-    <x-breadcrumbs class="mb-4" 
-     :links="['Jobs'=>route('jobs.index')]"/>
+    <x-breadcrumbs class="mb-4" :links="['Jobs'=>route('jobs.index')]"/>
 
     <x-card class="mb-4 text-sm" >
         <form action="{{route('jobs.index')}}" method="GET" >
@@ -20,12 +19,14 @@
                 <div>
                     <div class="mb-1 font-semibold">Experience</div>
 
-                    <x-radio-group name="experience" :options="\App\Models\JobPost::$experience"></x-radio-group>
+                    <x-radio-group name="experience" :options="array_combine(
+                        array_map('ucfirst',\App\Models\JobPost::$experience),\App\Models\JobPost::$experience)"></x-radio-group>
 
                 </div>
                 <div>
                     <div class="mb-1 font-semibold">Category</div>
-                    <x-radio-group name="category" :options="\App\Models\JobPost::$category"></x-radio-group>
+                    <x-radio-group name="category"
+                     :options="\App\Models\JobPost::$category"></x-radio-group>
                 </div>
             </div>
             <button class="w-full">Filter</button>
