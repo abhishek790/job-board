@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 
@@ -15,8 +16,13 @@ class JobPost extends Model
     public static array $experience = ['entry', 'intermeidate', 'senior'];
     public static array $category = ['IT', 'Finance', 'Sales', 'Marketing'];
 
-    public function scopeFilter(Builder|QueryBuilder $query, array $filters): Builder|QueryBuilder
+    public function employer(): BelongsTo
     {
+        return $this->belongsTo(Employer::class);
+    }
+
+    public function scopeFilter(Builder|QueryBuilder $query, array $filters): Builder|QueryBuilder
+    {   //if the value in the $filters array is not null it will be passed as a second argument in the callback function by laravel
         return $query->when($filters['search'] ?? null, function ($query, $search) {
 
             $query->where(function ($query) use ($search) {
