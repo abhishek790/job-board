@@ -27,7 +27,11 @@ class JobPost extends Model
 
             $query->where(function ($query) use ($search) {
                 $query->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%');
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    //here we cannot use where or orWhere since it is nested relationship, you have to use whereHas or orWhereHas and pass the relationship name and only then we add callback as we are filtering on a nested relationship so we are not checking the field of the job table, instead we are checking something or filtering the constraints on a relationship, so on a employer's table checking the company name
+                    ->orWhereHas('employer', function ($query) use ($search) {
+                        $query->where('company_name', 'like', '%' . $search . '%');
+                    });
             });
         })->when($filters['min_salary'] ?? null, function ($query, $min_salary) {
             $query->where('salary', '>=', $min_salary);

@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JobPost;
 use Illuminate\Http\Request;
 
-class JobPostController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        // only these query parameter will be sent as associative array to this variable
-        $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category');
-
-
-
-        return view('job.index', ['jobs' => JobPost::with('employer')->filter($filters)->get()]);
+        //
     }
 
     /**
@@ -25,7 +19,7 @@ class JobPostController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.create');
     }
 
     /**
@@ -39,9 +33,9 @@ class JobPostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JobPost $job)
-    {// by doing employer.jobPosts we are loading all the jobs from employer
-        return view('job.show', ['job' => $job->load('employer.jobPosts')]);
+    public function show(string $id)
+    {
+        //
     }
 
     /**
