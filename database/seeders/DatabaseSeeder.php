@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Employer;
+use App\Models\JobApplication;
 use App\Models\JobPost;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -40,6 +41,18 @@ class DatabaseSeeder extends Seeder
                 //random() would return a random element from a $employers collection and we just get random id from a random element 
                 'employer_id' => $employers->random()->id
             ]);
+
+        }
+
+        foreach ($users as $user) {
+            //we use inRandomOrder() for taking 0 to 4 jobs in random order so that we don't use same jobs over an over
+            $jobs = JobPost::inRandomOrder()->take(rand(0, 4))->get();
+            foreach ($jobs as $job) {
+                JobApplication::factory()->create([
+                    'user_id' => $user->id,
+                    'job_post_id' => $job->id
+                ]);
+            }
 
         }
 
