@@ -54,6 +54,6 @@ class User extends Authenticatable
 
     public function jobApplications(): HasMany
     {
-        return $this->hasManyJ(JobApplication::class);
+        return $this->hasMany(JobApplication::class);
     }
 }

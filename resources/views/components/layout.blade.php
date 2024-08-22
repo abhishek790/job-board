@@ -23,7 +23,11 @@
                 {{-- displaying some data to  authenticated users and other data for unauthenticated --}}
                 @auth
                 <li>
-                    {{auth()->user()->name?? 'Anonymous'}}
+                    <li>
+                        <a href="{{route('my-job-applications.index')}}">
+                            {{auth()->user()->name?? 'Anonymous'}} : Applications
+                        </a>
+                    </li>
                 </li>
                 <li>
                     <form action="{{route('auth.destroy')}}" method="POST">
