@@ -18,6 +18,8 @@ class JobPost extends Model
     public static array $experience = ['entry', 'intermeidate', 'senior'];
     public static array $category = ['IT', 'Finance', 'Sales', 'Marketing'];
 
+    protected $fillable = ['title', 'location', 'description', 'salary', 'experience', 'category'];
+
     public function employer(): BelongsTo
     {
         return $this->belongsTo(Employer::class);

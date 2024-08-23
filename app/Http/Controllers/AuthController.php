@@ -50,6 +50,6 @@ class AuthController extends Controller
         // this will regenerate the csrf token for this session, so by regenerating this token, we basically make sure that all the forms that were loaded before the user signed out can't be successfully sent
         request()->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect()->route('auth.create');
     }
 }
