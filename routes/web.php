@@ -28,4 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('employer', EmployerController::class)->only(['create', 'store']);
 
     Route::middleware('employer')->resource('my-jobs', MyJobController::class);
+
+    Route::middleware('employer')->get('job/trash', [MyJobController::class, 'trash'])->name('trash');
+    Route::middleware('employer')->post('job/restore/{my_job}', [MyJobController::class, 'restore'])->name('my-jobs.restore');
+    Route::middleware('employer')->delete('job/force-delete/{my_job}', [MyJobController::class, 'forceDelete'])->name('my_job.forceDelete');
 });

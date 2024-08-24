@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,9 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 class JobPost extends Model
 {
     use HasFactory;
+
+    // this triat will enable soft delete
+    use SoftDeletes;
 
     public static array $experience = ['entry', 'intermeidate', 'senior'];
     public static array $category = ['IT', 'Finance', 'Sales', 'Marketing'];
